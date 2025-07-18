@@ -1,0 +1,220 @@
+ @import url('https://api.fontshare.com/css?f[]=satoshi@600&display=swap');
+
+.navbar {
+  width: 890px;
+  height: 80px;
+  margin: 21px auto 0;
+  border-radius: 122px;
+  background: #FFFFFF;
+  border: 1px solid #FCFCFC;
+  box-shadow: 0px 0px 20px 0px #7F7F7F26;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 24px;
+  box-sizing: border-box;
+  font-family: 'Satoshi', sans-serif;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  position: relative;
+  width: 60px;
+  height: 50px;
+} 
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-links li {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  color: #303030;
+  cursor: pointer;
+}
+
+.create-job-btn {
+  background: linear-gradient(180deg, #A128FF 0%, #6100AD 113.79%);
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 100%;
+  padding: 8px 24px;
+  border: none;
+  margin-left: 20px;
+  border-radius: 30px;
+  cursor: pointer;
+} 
+
+header {
+  width: 100%;
+}
+  
+.filter-section {
+  margin: 20px auto;
+  width: 100%;
+  background: #fff;
+  box-shadow: 0px 0px 20px 0px #7F7F7F26;
+  border: 1px solid #FCFCFC;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px 10%;
+  gap: 20px;
+  font-family: 'Satoshi Variable', sans-serif;
+}
+
+.filter-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 10px;
+}
+
+.filter-input {
+  border: none;
+  font-size: 14px;
+  color: #303030;
+  opacity: 0.7;
+  background: transparent;
+  outline: none;
+  width: 160px;
+}
+
+.filter-input::placeholder {
+  color: #303030;
+  opacity: 0.7;
+}
+
+select.filter-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.vertical-line {
+  height: 40px;
+  width: 1px;
+  background-color: rgba(48, 48, 48, 0.1);
+}
+
+i {
+  font-size: 16px;
+  color: rgba(48, 48, 48, 0.7);
+}
+
+.salary-range-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.salary-range-container label {
+  font-size: 14px;
+  color: #303030;
+  opacity: 0.7;
+}
+
+.range-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.salary-value {
+  font-size: 14px;
+  color: #303030;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+.salary-range {
+  -webkit-appearance: none;
+  width: 120px;
+  height: 2px;
+  background: #303030;
+  outline: none;
+}
+
+.salary-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #303030;
+  cursor: pointer;
+}
+
+.salary-range::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #303030;
+  cursor: pointer;
+}
+
+/* Custom select dropdown styles */
+.filter-input.select-dropdown {
+  position: relative;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding: 10px 30px 10px 15px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 14px;
+  color: #303030;
+  cursor: pointer;
+  width: 180px;
+  transition: all 0.3s ease;
+}
+
+.filter-input.select-dropdown:focus {
+  outline: none;
+  border-color: #2873ff;
+  box-shadow: 0 0 0 2px rgba(161, 40, 255, 0.1);
+}
+
+.filter-input.select-dropdown option {
+  padding: 10px;
+  background: white;
+  color: #303030;
+}
+
+/* Dropdown container */
+.filter-item.select-container {
+  position: relative;
+}
+
+/* Custom arrow (alternative approach) */
+.filter-item.select-container::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 8px;
+  pointer-events: none;
+}
+.salary-range-text{
+  display: flex;
+  gap: 40px;
+}
+.salary-range-text label{
+  color: black;
+  font-weight: 600;
+}
