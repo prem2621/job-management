@@ -78,7 +78,7 @@ const JobForm = () => {
     }
 
     try {
-      await axios.post("https://job-management-backend-u9w6.onrender.com", user);
+      await axios.post("https://job-management-backend-u9w6.onrender.com/jobs", user);
       alert("data succefully inserted");
       setUsers({
         jobtitle: "",
