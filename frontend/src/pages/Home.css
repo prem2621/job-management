@@ -98,4 +98,13 @@
     font-weight: bold;
     font-size: 18px;
   }
-   
+/* Add to Home.css */
+.loading, .error {
+    text-align: center;
+    padding: 1rem;
+    grid-column: 1 / -1; /* Makes it span full width */
+  }
+  
+  .error {
+    color: #ff0000;
+  }   
