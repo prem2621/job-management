@@ -16,7 +16,7 @@ const App = () => {
   const fetchJobs = async () => {
     console.log("Fetching Jobs...");
     try {
-       const res = await axios.get("http://localhost:8080/jobs");
+       const res = await axios.get("https://job-management-backend-u9w6.onrender.com/jobs");
        console.log("Jobs Fetched",res.data );
       setJobs(res.data);
     } catch (err) {
