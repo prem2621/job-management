@@ -1,26 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, {  useState } from 'react'
 import "./Home.css"
 import amazon from "../assets/amazon-logo.png"
 import tesla from "../assets/tesla-logo.png"
 import swiggy from "../assets/swiggy-logo.png"
-import  axios from "axios"
 
-const Home = () => {
+const Home = ({jobs}) => {
 
-   const [jobs, setJobs] = useState([])
-   useEffect(() => {
-     const fetchJobs = async () => {
-       try {
-         const res = await axios.get("http://localhost:8080/jobs");
-         setJobs(res.data);
-       } catch (err) {
-         console.error("Error fetching jobs:", err);
-       }
-     };
+   const [loading, setLoading] = useState(false)
+   const [error, setError] = useState(null)
 
-     fetchJobs();
-   }, []);
-
+ 
    const getInitial = (companyName) => {
      return companyName ? companyName.charAt(0).toUpperCase() : "C";
    };
@@ -299,8 +288,12 @@ const Home = () => {
         <button className="apply">Apply Now</button>
       </div>
 
-      {jobs.map((job, index) => (
-        <div className="box" key={index}>
+   
+      {loading && <div className="loading">Loading additional jobs...</div>}
+      {error && <div className="error">{error}</div>}
+
+      {jobs.map((job) => (
+        <div className="box" key={job._id}>
           <div className="box-header">
             <div className="img-box">
               <div className="circle-logo">{getInitial(job.companyName)}</div>
@@ -322,7 +315,9 @@ const Home = () => {
           </div>
           <div className="job-description">
             <ul>
-              <li>{job.jobDescription}</li>
+              {job.jobDescription.split("\n").map((line, i) => (
+                <li key={i}>{line}</li>
+              ))}
             </ul>
           </div>
           <button className="apply">Apply Now</button>
