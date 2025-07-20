@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./JobForm.css";
 import axios from "axios"
 
-const JobForm = () => {
+const JobForm = ({closeForm, fetchJobs}) => {
   const [user, setUsers] = useState({
     jobtitle: "",
     companyName: "",
@@ -62,8 +62,10 @@ const JobForm = () => {
     }
   };
 
+ 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (
       !user.jobtitle ||
       !user.companyName ||
@@ -78,8 +80,9 @@ const JobForm = () => {
     }
 
     try {
-      await axios.post("https://job-management-backend-u9w6.onrender.com/jobs", user);
-      alert("data succefully inserted");
+     await axios.post("https://job-management-backend-u9w6.onrender.com/jobs", user);
+      alert("Data successfully inserted");
+    
       setUsers({
         jobtitle: "",
         companyName: "",
@@ -89,12 +92,17 @@ const JobForm = () => {
         salaryMax: "",
         jobDescription: "",
       });
-      setFormVisible(false);
+
+      setError("");
+
+      closeForm();
+
+      await fetchJobs();
     } catch (err) {
-      console.error(err);
-      alert("Error submitting user");
+      console.error("Error submitting job:", err);
+      setError("Failed to submit job. Please try again.");
+      alert("Error submitting job");
     }
-    console.log(user);
   };
 
   return (
@@ -186,11 +194,6 @@ const JobForm = () => {
     </div>
   </div>
 
-  {lpaRange && (
-    <div className="lpa-preview">
-      Estimated Max Salary: <strong>{lpaRange}</strong>
-    </div>
-  )}
 </div>
           <div className="input-group">
             <label>Application Deadline</label>
