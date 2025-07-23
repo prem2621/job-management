@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 import "./JobForm.css";
-import axios from "axios"
+import upArrow from "../assets/upArrow.png";
+import axios from "axios";
 
 const JobForm = ({closeForm, fetchJobs}) => {
+<<<<<<< Updated upstream
+=======
+  
+>>>>>>> Stashed changes
   const [user, setUsers] = useState({
     jobtitle: "",
     companyName: "",
@@ -80,7 +85,16 @@ const JobForm = ({closeForm, fetchJobs}) => {
     }
 
     try {
+<<<<<<< Updated upstream
      await axios.post("https://job-management-backend-u9w6.onrender.com/jobs", user);
+=======
+      const jobData = {
+        ...user,
+        salaryMax: user.salaryMax || user.salaryMin,
+      };
+      await axios.post("http://localhost:8080/jobs", jobData);
+
+>>>>>>> Stashed changes
       alert("Data successfully inserted");
     
       setUsers({
@@ -108,31 +122,123 @@ const JobForm = ({closeForm, fetchJobs}) => {
   return (
     formVisible && (
       <div className="job-form-container">
-      <h2>Create Job Opening</h2>
+        <h2>Create Job Opening</h2>
 
-      <form className="job-form" onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="input-group ">
-            <label htmlFor="jobtitle">Job Title</label>
-            <input
-              type="text"
-              value={user.jobtitle}
+        <form className="job-form" onSubmit={handleSubmit}>
+          <div className="row">
+            <div className="input-group ">
+              <label htmlFor="jobtitle">Job Title</label>
+              <input
+                type="text"
+                value={user.jobtitle}
+                onChange={handleChange}
+                name="jobtitle"
+                placeholder="Full Stack Developer"
+                required
+              />
+            </div>
+            <div className="input-group">
+              <label htmlFor="companyName">Company Name</label>
+              <input
+                value={user.companyName}
+                onChange={handleChange}
+                name="companyName"
+                type="text"
+                placeholder="Amazon, Microsoft, Swiggy"
+              />
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-group">
+              <label htmlFor="location">Location</label>
+              <select
+                className="location-select"
+                name="location"
+                value={user.location}
+                onChange={handleChange}
+              >
+                <option>Choose Preferred Location</option>
+                <option>Chennai</option>
+                <option>Bengaluru</option>
+                <option>Coimbatore</option>
+                <option>Hyderabad</option>
+              </select>
+            </div>
+            <div className="input-group">
+              <label htmlFor="jobTypes">Job Type</label>
+              <select
+                name="jobTypes"
+                value={user.jobTypes}
+                onChange={handleChange}
+              >
+                <option>FullTime</option>
+                <option>PartTime</option>
+                <option>Contract</option>
+                <option>Internship</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="row">
+            <div className="input-group half">
+              <label htmlFor="range">Salary Range</label>
+              <div className="range">
+                <div className="input-icon-wrapper">
+                  <img src={upArrow} className="upArrow" alt="" />
+                  <input
+                    type="text"
+                    placeholder="₹ 0"
+                    name="salaryMin"
+                    value={user.salaryMin}
+                    onChange={handleChange}
+                  />
+                </div>
+
+                <div className="input-icon-wrapper">
+                  <img src={upArrow} className="upArrow" alt="" />
+                  <input
+                    type="text"
+                    placeholder="₹ 12,00,000"
+                    name="salaryMax"
+                    value={user.salaryMax}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className="input-group">
+              <label>Application Deadline</label>
+              <input
+                type="datetime"
+                onFocus={(e) => (e.target.type = "date")}
+                onBlur={(e) => {
+                  if (e.target.value === "") e.target.type = "text";
+                }}
+              />
+            </div>
+          </div>
+
+          <div className="input-group full">
+            <label htmlFor="jobDescription">Job Description</label>
+            <textarea
+              value={user.jobDescription}
               onChange={handleChange}
-              name="jobtitle"
-              placeholder="Full Stack Developer"
-              required
+              name="jobDescription"
+              placeholder="Please share a description to let the candidate know more about the job role"
             />
           </div>
-          <div className="input-group">
-            <label htmlFor="companyName">Company Name</label>
-            <input
-              value={user.companyName}
-              onChange={handleChange}
-              name="companyName"
-              type="text"
-              placeholder="Amazon, Microsoft, Swiggy"
-            />
+
+          <div className="form-actions">
+            <button type="button" className="draft-btn">
+              Save Draft <i className="fa-solid fa-angles-down"></i>
+            </button>
+            {error && <p style={{ color: "red" }}>{error}</p>}
+            <button type="submit" className="publish-btn">
+              Publish <i className="fas fa-angle-double-right"></i>
+            </button>
           </div>
+<<<<<<< Updated upstream
         </div>
 
         <div className="row">
@@ -228,9 +334,12 @@ const JobForm = ({closeForm, fetchJobs}) => {
         </div>
       </form>
     </div>
+=======
+        </form>
+      </div>
+>>>>>>> Stashed changes
     )
-    
-  )
+  );
 };
 
 export default JobForm;

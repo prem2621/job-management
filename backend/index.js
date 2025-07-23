@@ -1,4 +1,7 @@
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 const express = require("express");
 const Cors = require("cors");
 const mongoose = require("mongoose");
@@ -9,7 +12,7 @@ const app = express();
 app.use(Cors());
 app.use(express.json());
 
-const Port = process.env.PORT || 8080;  // use 8080 if 5000 is busy
+const Port = process.env.PORT || 8080; 
 
 // Connect MongoDB
 mongoose
@@ -19,8 +22,6 @@ mongoose
     process.exit(1)
   });
 
-// Routes
-// app.get("/", (req, res) => res.send("API Working"));
 app.get("/jobs", async (req, res) => {
   try {
     const jobs = await Job.find();

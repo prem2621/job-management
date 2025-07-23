@@ -1,8 +1,18 @@
 import React from 'react';
 import "./Navbar.css"
 import logo from "../assets/logo.png"
+import jobType from "../assets/job-type.png"
+import location from "../assets/location.png"
+import search from "../assets/search.png"
+import down from "../assets/down.png"
 
-const Navbar = ({ onCreateJobClick }) => {
+const Navbar = ({ onCreateJobClick ,filters, onFilterChange}) => {
+  const formatSalary = (amount) => {
+    if (amount >= 100000) {
+      return `${Math.floor(amount / 100000)} LPA+`;
+    }
+    return `${Math.floor(amount / 1000)}k+`;
+  };
   return (
     <header>
       <nav className="navbar">
@@ -25,9 +35,12 @@ const Navbar = ({ onCreateJobClick }) => {
 
       <div className="filter-section">
         <div className="filter-item">
-          <i className="fas fa-search"></i>
+          <img src={search} className="search" alt="" />
           <input
             type="text"
+            name="keyword"
+            value={filters.keyword}
+            onChange={onFilterChange}
             className="filter-input"
             placeholder="Search By Job Title, Role"
           />
@@ -36,25 +49,37 @@ const Navbar = ({ onCreateJobClick }) => {
         <div className="vertical-line"></div>
 
         <div className="filter-item">
-          <i className="fas fa-map-marker-alt"></i>
-          <input
-            type="text"
-            className="filter-input"
-            placeholder="Preferred Location"
-          />
+          <img src={location} className="location" alt="" />
+          <select name='location'
+            className="filter-input select-dropdown"
+            value={filters.location}
+            onChange={onFilterChange}
+          >
+            <option value="">Preferred Location</option>
+            <option value="Chennai">Chennai</option>
+            <option value="Bengaluru">Bengaluru</option>
+            <option value="Hyderabad">Hyderabad</option>
+            <option value="Coimbatore">Coimbatore</option>
+          </select>
+          <img src={down} className="down" alt="" />
         </div>
 
         <div className="vertical-line"></div>
 
         <div className="filter-item">
-          <i className="fas fa-user"></i>
-          <select className="filter-input select-dropdown">
-            <option value="">Job type</option>
-            <option value="Full-time">Full-time</option>
-            <option value="Part-time">Part-time</option>
-            <option value="Contract">Contract</option>
-            <option value="Internship">Internship</option>
+          <img src={jobType} className="jobType" alt="" />
+          <select
+            className="filter-input select-dropdown"
+            onChange={onFilterChange} name='jobType'
+            value={filters.jobType}
+          >
+            <option className='option' value="">Job type</option>
+            <option className='option' value="Full-time">Full-time</option>
+            <option className='option' value="Part-time">Part-time</option>
+            <option className='option' value="Contract">Contract</option>
+            <option className='option' value="Internship">Internship</option>
           </select>
+          <img src={down} className="down" alt="" />
         </div>
 
         <div className="vertical-line"></div>
@@ -62,16 +87,23 @@ const Navbar = ({ onCreateJobClick }) => {
         <div className="filter-item">
           <div className="salary-range-container">
             <div className="salary-range-text">
-              <label>Salary Per Month</label>
-              <span className="salary-value">$50k - $60k</span>
+              <label>Minimum Salary</label>
+              <span className="salary-value">
+              {formatSalary(filters.salary)}
+  </span>
             </div>
             <div className="range-wrapper">
               <input
                 type="range"
-                min="50000"
-                max="80000"
+                min="0"
+                max="1200000"
+                name="salary"
+                step="100000"
+                value={filters.salary}
+                onChange={onFilterChange}
                 className="salary-range"
               />
+              
             </div>
           </div>
         </div>
