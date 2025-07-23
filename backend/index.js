@@ -1,7 +1,4 @@
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 const express = require("express");
 const Cors = require("cors");
 const mongoose = require("mongoose");
