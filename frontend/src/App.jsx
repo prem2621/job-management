@@ -9,8 +9,6 @@ const App = () => {
 
   const [showJobForm, setShowJobForm] = useState(false)
   const [jobs,setJobs] = useState([])
-<<<<<<< Updated upstream
-=======
   const [filters, setFilters] = useState({
     keyword: "",
     location: "",
@@ -101,7 +99,6 @@ const App = () => {
   ];
 
 
->>>>>>> Stashed changes
 
   const openForm = () => setShowJobForm(true);
   const closeForm = () => setShowJobForm(false);
@@ -109,11 +106,6 @@ const App = () => {
   const fetchJobs = async () => {
     console.log("Fetching Jobs...");
     try {
-<<<<<<< Updated upstream
-       const res = await axios.get("https://job-management-backend-u9w6.onrender.com/jobs");
-       console.log("Jobs Fetched",res.data );
-      setJobs(res.data);
-=======
        const res = await axios.get("http://localhost:8080/jobs");
        console.log("Jobs Fetched",res.data );
        const apiJobs = res.data.map((job) => ({
@@ -122,7 +114,6 @@ const App = () => {
        }));
        setJobs(apiJobs);
      
->>>>>>> Stashed changes
     } catch (err) {
       console.error("Error fetching jobs:", err);
     }
@@ -132,8 +123,6 @@ const App = () => {
     fetchJobs()
   },[])
 
-<<<<<<< Updated upstream
-=======
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -151,7 +140,6 @@ const App = () => {
     return matchKeyword && matchLocation && matchJobType && matchSalary;
   });
 
->>>>>>> Stashed changes
   return (
     <div>
       <Navbar onCreateJobClick={openForm} filters={filters} onFilterChange={handleFilterChange}/>
@@ -162,11 +150,7 @@ const App = () => {
           </div>
         </div>
       )}
-<<<<<<< Updated upstream
-      <Home jobs={jobs}/>
-=======
       <Home jobs={jobs} filteredJobs={filteredJobs}/>
->>>>>>> Stashed changes
     </div>
   );
 }
